@@ -1,0 +1,36 @@
+<div class="container-fluid">
+  <h1>Articles</h1>
+  <h4>Our blog has <%= Article.public_count %> articles and counting!</h4>
+  <div class="card">
+    <div class="card-body">
+      <%= link_to "New Article", new_article_path %>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">TITLE</th>
+            <th scope="col">DESCRIPTION</th>
+            <th scope="col">ACTION(S)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @articles.each_with_index do |article, index| %>
+            <% unless article.archived? %>
+              <tr>
+                <th scope="row"><%= index+1 %></th>
+                <td><%= article.title %></td>
+                <td><%= article.description%></td>
+                <td>
+                  <%= link_to "Show", article %>
+                  | <%= link_to "Edit", edit_article_path(article) %>
+                  | <%= link_to "Remove", article, method: :delete, data: { confirm: "Are you sure?" } %></td>
+                </td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+

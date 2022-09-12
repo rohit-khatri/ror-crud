@@ -1,0 +1,26 @@
+<%= form_with model: [ @article, @article.comments.build ] do |form| %>
+  <div class="form-group row">
+    <label for="commenter" class="col-sm-2 col-form-label"><%= form.label :commenter %></label>
+    <div class="col-sm-10">
+      <%= form.text_field :commenter %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="body" class="col-sm-2 col-form-label"><%= form.label :body %></label>
+    <div class="col-sm-10">
+      <%= form.text_area :body %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="status" class="col-sm-2 col-form-label"><%= form.label :status %></label>
+    <div class="col-sm-10">
+      <%= form.select :status, ['public', 'private', 'archived'], selected: 'public' %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-sm-10">
+      <%= form.submit %>
+    </div>
+  </div>
+<% end %>
